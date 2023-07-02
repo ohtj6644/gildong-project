@@ -1,0 +1,114 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+font-family: 'Grandiflora One', serif;
+
+}
+div,
+nav {
+  box-sizing: border-box;
+}
+span,p,a,h1,h2,h3{
+    font-family: 'Grandiflora One', serif;
+
+    color: #73703f;
+}
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.main_menu > ul > li {
+  font-weight: 700;
+  font-size: 20px;
+}
+.top__bar > .top__bar_menu {
+  width: 1520px;
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+.top__bar > .top__bar_menu > .logo_box {
+  flex-grow: 1;
+}
+.top__bar > .top__bar_menu > div > ul > li > a > button > img {
+  width: 260px;
+  height: 74px;
+}
+.top__bar > .top__bar_menu > .main_menu {
+  display: flex;
+  flex-grow: 4;
+}
+.top__bar > .top__bar_menu > .main_menu > .main_menu_ul {
+  display: flex;
+}
+
+
+.top__bar
+  > .top__bar_menu
+  > .main_menu
+  > .main_menu_ul
+  > li:hover
+  > a >span{
+background: linear-gradient(180deg,rgba(255,255,255,0) 60%, red 40%);
+    cursor: pointer;
+}
+.top__bar
+  > .top__bar_menu
+  > .main_menu
+  > .main_menu_ul
+  > li
+  > a
+  > span {
+  font-size: 30px;
+  line-height: 32px;
+  margin: 10px;
+    height: 100%;
+    display: block;
+    margin-bottom: 0;
+    color: black;
+    letter-spacing : -1px;
+    margin-right : 90px;
+
+}
+.top__bar > .top__bar_menu > .signLine {
+  flex-grow: 2;
+  height: 74px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.top__bar > .top__bar_menu > .signLine > div {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.top__bar > .top__bar_menu > .signLine > div > a > button > span {
+  display: block;
+  color: black;
+
+}
+.top__bar > .top__bar_menu > .signLine > div > a > button > .signline {
+  font-size: 20px; /* 원하는 크기로 조정하세요 */
+  display: inline-block;
+  width: 20px; /* 원하는 넓이로 조정하세요 */
+  height: 30px; /* 원하는 높이로 조정하세요 */
+  margin-bottom: 5px;
+}
+.top__bar > .top__bar_menu > .signLine > div > a > button > .signline_img{
+    width: 20px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}

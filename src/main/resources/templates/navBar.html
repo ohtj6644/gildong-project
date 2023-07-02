@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/layout/navBar"/>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+</style>
+    <title>navbar_no</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/af580f77b6.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<!--detail-topbar-->
+<div class="top__bar">
+    <nav class="top__bar_menu">
+        <div class="logo_box">
+            <ul>
+                <li>
+                    <a th:href="@{/}">
+                        <button type="button" class="logo_button">
+                            <img src="https://i.postimg.cc/Jh65WG6h/logo.png"/>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main_menu">
+            <ul class="main_menu_ul">
+                <li>
+                    <a th:href="@{/}">
+                        <span>자유게시판</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/}">
+                        <span>사진첩</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/}">
+                        <span>공지사항</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="signLine">
+            <div
+                    class="logout"
+                    sec:authorize="isAuthenticated()"
+                    th:href="@{/user/logout}"
+            >
+                <a th:href="@{/user/logout}">
+                    <button type="button" class="logout_button">
+
+                        <span>로그아웃</span>
+                    </button>
+                </a>
+            </div>
+
+            <div
+                    class="signIn"
+                    sec:authorize="isAnonymous()"
+                    th:href="@{/user/login}"
+            >
+                <a th:href="@{/user/login}">
+                    <button type="button" class="signIn_button">
+
+                        <span>로그인</span>
+                    </button>
+                </a>
+            </div>
+
+
+
+            <div
+                    class="signUp"
+                    sec:authorize="isAnonymous()"
+                    th:href="@{/user/login}"
+            >
+                <a th:href="@{/user/signup_menual}">
+                    <button type="button" class="signUp_button">
+
+                        <span>협회 가입</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>
