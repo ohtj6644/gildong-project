@@ -1,0 +1,66 @@
+<!--네비바(탑바)-->
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>툴툴</title>
+  <link rel="stylesheet" href="/Free_form.css"/>
+  <link rel="stylesheet" href="/layout/navbar_no.css"/>
+  <link rel="stylesheet" href="/layout/footer.css"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+</style>
+</head>
+<body>
+<div th:replace="layout/navBar.html"></div>
+<!--아래부터 폼 -->
+<div class="box">
+  <img  class ="img_b"src="https://i.postimg.cc/RCRQBxn4/3.jpg"/>
+  <div layout:fragment="content" class="container" >
+
+    <form th:object="${articleForm}" method="post" class="form" enctype="multipart/form-data">
+      <h1 class="my-3 border-bottom pb-2"><p>자유게시판 작성</p></h1>
+
+      <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+      <div class="mb-3">
+        <label for="subject" class="form-label">제목</label>
+        <input type="text" th:field="*{subject}" class="form-control form-control-1">
+      </div>
+
+
+      <div class="mb-3">
+        <div class="season"><p>카테고리:</p></div>
+        <select name=”season” id="season" th:field="*{season}">
+          <option id="seasonmenu1" name="season" value=자유>자유</option>
+          <option id="seasonmenu2" name="season" value=추천>추천</option>
+          <option id="seasonmenu3" name="season" value=파티원구함>파티원구함</option>
+          <option id="seasonmenu3" name="season" value=질문>질문</option>
+
+        </select>
+
+
+        <div class="product-img-box">
+          <label for="avatar1" class="picture">상품사진:</label>
+          <input accept="image/png, image/jpeg, image/jpg" id="avatar1" name="files" type="file" multiple>
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">내용</label>
+          <textarea sec:authorize="isAnonymous()" th:field="*{content}"
+                    class="form-control" rows="10" th:if="${#authorization.expression('isAnonymous()')}"></textarea>
+          <textarea sec:authorize="isAuthenticated()" th:field="*{content}"
+                    class="form-control" rows="10"
+                    th:if="${#authorization.expression('isAuthenticated()')}"></textarea>
+        </div>
+        <div class="button">
+          <input type="submit" value="저장하기" class="btn btn-primary my-2">
+        </div>
+
+    </form>
+  </div>
+</div>
+<!--footer-->
+<footer th:replace="layout/footer.html"></footer>
+</body>
+</html>

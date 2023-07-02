@@ -43,10 +43,11 @@ a {
 }
 .top__bar > .top__bar_menu > .logo_box {
   flex-grow: 1;
+
 }
 .top__bar > .top__bar_menu > div > ul > li > a > button > img {
-  width: 260px;
-  height: 74px;
+  width: 120px;
+  height: 120px;
 }
 .top__bar > .top__bar_menu > .main_menu {
   display: flex;
