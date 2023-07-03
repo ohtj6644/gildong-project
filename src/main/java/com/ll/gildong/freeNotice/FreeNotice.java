@@ -1,13 +1,20 @@
 package com.ll.gildong.freeNotice;
 
 
+import com.ll.gildong.User.SiteUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class FreeNotice {
 
     @Id
@@ -33,13 +40,27 @@ public class FreeNotice {
 //    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
 //    private List<Answer> answerList;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "author_id")
-//    private SiteUser author;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private SiteUser author;
+
+    @ManyToMany
+    private Set<SiteUser> voter;
 
     private int likeCount;
 
 //    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
 //    private List<Answer> answerList;
+
+
+    @ElementCollection
+    @CollectionTable(name = "freeNotice_filenames", joinColumns = @JoinColumn(name = "freeNotice_id"))
+    @Column(name = "filename")
+    private List<String> filenames;
+
+    @ElementCollection
+    @CollectionTable(name = "freeNotice_filepaths", joinColumns = @JoinColumn(name = "freeNotice_id"))
+    @Column(name = "filepath")
+    private List<String> filepaths;
 
 }

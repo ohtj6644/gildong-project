@@ -1,0 +1,137 @@
+h1{
+  font-family: 'Grandiflora One', serif;
+}
+p{
+  font-family: 'Grandiflora One', serif;
+}
+span{
+  font-family: 'Grandiflora One', serif;
+  font-weight:bold;
+}
+button{
+  font-family: 'Grandiflora One', serif;
+}
+input{
+  font-family: 'Grandiflora One', serif;
+}
+.my-3con{
+  text-align:center;
+  margin-top:100px;
+}
+
+.My-3{
+  display:inline-block;
+  text-align:center;
+  width:600px;
+
+
+
+}
+
+
+form>div{
+  font-size:20px;
+
+}
+
+.signin{
+  text-align:center;
+  color : black;
+
+}
+
+.signment{
+  font-size:10px;
+  text-align:center;
+  color:gray;
+  margin-top:0;
+}
+
+.form-control{
+  width:100%;
+  height:40px;
+  border-radius:10px;
+  margin-top:20px;
+  outline:none;
+
+}
+
+.btnPrimary{
+  background: #000;
+  color:white;
+  border-radius:10px;
+  border:none;
+  font-size:20px;
+}
+
+.btnPrimary:hover{
+  background: red;
+  color:#fff;
+}
+
+.alertDanger{
+  text-align:center;
+  color: red;
+}
+
+.signComent > p{
+  font-size:18px;
+  font-weight:light;
+  color:#000;
+}
+
+.My-3 hr{
+  border:2px solid #000;
+  margin-bottom:40px;
+  width:100%;
+}
+
+.signInput{
+  display:flex;
+  flex-direction:column;
+  margin-top: 60px;
+}
+
+.signInput .form-control{
+  border-radius:0px;
+  border-style:none;
+  border-bottom:2px solid #000;
+  width:100%;
+
+}
+
+.signupSummitBtn {
+ text-align:center;
+}
+
+.signupSummitBtn .btnPrimary{
+  background: #000;
+  width : 100%;
+  padding:15px;
+  border-radius:10px;
+  margin-top:20px;
+  color:#fff;
+  font-size:20px;
+}
+
+.signupSummitBtn .btnPrimary:hover{
+  background: red;
+}
+
+
+.signupBtnArea .btnPrimary{
+  width:100%;
+  padding:15px 0;
+}
+
+.signComent .signUpment{
+  text-align:center;
+}
+
+.signwrap{
+  margin-top:93px;
+  display:flex;
+  flex-direction:column;
+  gap:15px 0;
+}
+

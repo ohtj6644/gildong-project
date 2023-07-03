@@ -1,10 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/MainPage.css"/>
+    <link rel="stylesheet" href="/layout/navBar.css"/>
+    <link rel="stylesheet" href="/layout/footer.css"/>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+</style>
+    <title>navbar_no</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/af580f77b6.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div th:replace="layout/navBar.html"></div>
+<!--게시글 내용-->
+<div class="main-container">
+    <!--배너라인 -->
+    <div class="banner__bar">
+        <div class="banner__list">
+            <div class="banner">
+                <img src="https://i.postimg.cc/6Q1k5HjQ/2.jpg" alt=""/>
+            </div>
+            <div class="banner">
+                <img src="https://i.postimg.cc/tRVj7jHG/1.jpg" alt=""/>
+            </div>
+            <div class="banner">
+                <img src="https://i.postimg.cc/9FjvMwpy/3.jpg" alt=""/>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="button" data-index="0"></div>
+            <div class="button" data-index="1"></div>
+            <div class="button" data-index="2"></div>
+        </div>
+    </div>
+    <!--배너라인 끝-->
+    <!--자유게시판목록-->
+    <div class="freeNotice_bar">
+        <div class="list_head">
+            <span>자유게시판</span>
+        </div>
+        <br>
+
+        <tbody>
+        <tr th:each="notice, stat : ${noticeList}" th:if="${stat.index < 10}">
+
+            <td class="tal">
+                <li> <a th:href="@{|/notice/detail/${notice.id}|}" th:text="${notice.subject}">리스트입니당</a></li>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </div>
+    <!--자유게시판목록 끝-->
+    <!--공지사항 목록-->
+    <div class="notice_bar">
+        <div class="list_head">
+            <span>공지사항</span>
+        </div>
+        <br>
+
+        <tbody>
+        <tr th:each="notice, stat : ${noticeList}" th:if="${stat.index < 10}">
+
+            <td class="tal">
+                <li><a th:href="@{|/notice/detail/${notice.id}|}" th:text="${notice.subject}">리스트입니당</a>
+                </li>
+            </td>
+
+
+        </tr>
+        </tbody>
+
+    </div>
+    <!--공지사항 목록 끝-->
+    <!--메뉴버튼 -->
+    <div class="menu_button_bar">
+        <div >
+            <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;바로가기</span>
+        </div>
+        <div class="icon_alline">
+            <div class="icon_box">
+                <a href="https://maplestory.nexon.com/">
+                    <img src="https://i.postimg.cc/X7LS43rk/Kakao-Talk-Photo-2023-07-03-12-24-19-004.png"/>
+
+                    <span class="icon_text">메이플스토리</span>
+
+                </a>
+            </div>
+            <div class="icon_box">
+                <a href="https://www.inven.co.kr/maple/">
+                    <img src="https://i.postimg.cc/CMDJjNYZ/Kakao-Talk-Photo-2023-07-03-12-24-19-003.png"/>
+                    <span class="icon_text">메이플 인벤</span>
+                </a>
+            </div>
+            <div class="icon_box">
+                <a th:href="@{/freenotice/list}">
+                    <img src="https://i.postimg.cc/KjVvmMcw/Kakao-Talk-Photo-2023-07-03-12-24-19-001.png"/>
+                    <span class="icon_text">자유게시판</span>
+                </a>
+            </div>
+            <div class="icon_box">
+                <a href="#">
+                    <img src="https://i.postimg.cc/m28yyZXq/Kakao-Talk-Photo-2023-07-03-12-24-19-002.png"/>
+                    <span class="icon_text">사진첩</span>
+                </a>
+            </div>
+            <div class="icon_box">
+                <a href="#">
+                    <img src="https://i.postimg.cc/ZK8s6hpv/Kakao-Talk-Photo-2023-07-03-12-42-30.png"/>
+                    <span class="icon_text">공지사항</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!--메뉴버튼 끝-->
+</div>
+<!--게시글 끝-->
+<footer th:replace="layout/footer.html"></footer>
+<script>
+    $(document).ready(function () {
+  const banner__bar = $(".banner__bar");
+  const banner__list = $(".banner__list");
+  const banners = $(".banner");
+  const buttons = $(".button");
+  const slideWidth = banner__bar.width();
+  let currentIndex = 0;
+  let interval;
+
+  banners.css("width", slideWidth + "px");
+  banner__list.css("width", slideWidth * banners.length + "px");
+
+  function moveSlide(index) {
+    currentIndex = index;
+    banner__list.animate(
+      { marginLeft: "-" + slideWidth * currentIndex + "px" },
+      500
+    );
+    buttons.removeClass("active");
+    buttons.eq(currentIndex).addClass("active");
+  }
+
+  buttons.click(function () {
+    const index = $(this).data("index");
+    moveSlide(index);
+  });
+
+  interval = setInterval(function () {
+    currentIndex++;
+    if (currentIndex >= banners.length) {
+      currentIndex = 0;
+    }
+    moveSlide(currentIndex);
+  }, 3000);
+});
+</script>
 </body>
-</html>

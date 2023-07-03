@@ -32,7 +32,7 @@
         <div class="main_menu">
             <ul class="main_menu_ul">
                 <li>
-                    <a th:href="@{/}">
+                    <a th:href="@{/freenotice/list}">
                         <span>자유게시판</span>
                     </a>
                 </li>
@@ -82,7 +82,7 @@
                     sec:authorize="isAnonymous()"
                     th:href="@{/user/login}"
             >
-                <a th:href="@{/user/signup_menual}">
+                <a th:href="@{/user/signup}">
                     <button type="button" class="signUp_button">
 
                         <span>협회 가입</span>

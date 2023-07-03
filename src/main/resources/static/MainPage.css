@@ -1,0 +1,164 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+p{
+  font-family: 'Grandiflora One', serif;
+}
+span{
+  font-family: 'Grandiflora One', serif;
+  font-weight:bold;
+}
+button{
+  font-family: 'Grandiflora One', serif;
+}
+input{
+  font-family: 'Grandiflora One', serif;
+}
+.main-container{
+
+  position:relative;
+  width:1340px;
+  height:700px;
+  left:200px;
+  margin-top:50px;
+
+}
+span{
+  font-family: 'Grandiflora One', serif;
+  font-size:30px;
+  font-weight:bold;
+}
+a{
+  font-family: 'Grandiflora One', serif;
+}
+.noticesub{
+  font-family: 'Grandiflora One', serif;
+  font-size:20px;
+}
+/*배너라인 끝*/
+.banner>img{
+  width:700px;
+  height:250px;
+}
+/*banner라인*/
+.banner__bar {
+  width: 700px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 20px;
+  overflow: hidden;
+  position: absolute;
+  left:2%;
+  top:2%;
+}
+
+.banner__bar > .banner__list {
+  display: flex;
+  transition: 0.3s ease-out;
+  height: 100%;
+  width: 100%;
+}
+
+.banner__bar > .banner__list > .banner {
+  flex: 0 0 700px;
+}
+
+.banner__bar > .banner__list > .banner > img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.buttons {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.button {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.button.active {
+  background-color: red;
+}
+
+.sorting-box {
+   width: 700px;
+   margin: 0 auto;
+ }
+/*배너라인 끝*/
+.freeNotice_bar{
+  position:absolute;
+  bottom:20px;
+  left:2%;
+  width:340px;
+  height: 360px;
+border:2px solid gray;
+  border-radius:10px;
+}
+.notice_bar{
+  position:absolute;
+  bottom:20px;
+  left:390px;
+  width:340px;
+  height: 360px;
+border:2px solid gray;
+  border-radius:10px;
+}
+.list_subject{
+  border:3px solid red;
+}
+.list_head{
+  border-bottom:3px solid red;
+}
+
+
+
+/*아래부터 메뉴버튼*/
+.menu_button_bar{
+  position:absolute;
+  width: 500px;
+  height:645px;
+  left: 750px;
+  top:5%;
+  border:2px solid gray;
+    border-radius:10px;
+}
+.icon_text{
+  font-family: 'Grandiflora One', serif;
+  font-size:20px;
+  text-decoration:none;
+  color:black;
+}
+a{
+  text-decoration:none;
+}
+
+.icon_box{
+  display: inline-block;
+  width:150px;
+  height:160px;
+  text-align:center;
+  margin-left:30px;
+  margin-right:30px;
+  margin-bottom:10px;
+
+}
+.icon_box>a>img{
+  width:130px;
+  height:130px;
+}
+.icon_alline{
+  text-align:center;
+  margin-top:20px;
+}
+
+
+.icon_box>a:hover>span{
+  background: linear-gradient(180deg,rgba(255,255,255,0) 60%, red 40%);
+    cursor: pointer;
+}

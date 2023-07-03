@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>툴툴</title>
+  <link rel="stylesheet" href="/Free_list.css"/>
+  <link rel="stylesheet" href="/layout/navBar.css"/>
+  <link rel="stylesheet" href="/layout/footer.css"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+</style>
+</head>
+
+<body>
+<div th:replace="layout/navBar.html"></div>
+<!--아래부터 게시글 상세-->
+<div class="rel_con1">
+<div class="rel_con">
+  <img  class ="img_b"src="https://i.postimg.cc/RCRQBxn4/3.jpg"/>
+  <div class="title_control">
+    <h1 class="my-3 border-bottom pb-2"><p>자유게시판 </p></h1>
+  </div>
+
+
+  <div class="Review_form">
+    <div class="Article_content_Box">
+      <!--write_box-->
+      <div class="write_box">
+        <button type="button">
+          <a th:href="@{/freenotice/create}">
+            <img src="https://i.postimg.cc/13HmB7VP/Vector.png"/>
+            <span>글쓰기</span>
+          </a>
+        </button>
+      </div>
+      <div class="category_list">
+        <a href=""> 자유 |</a>
+        <a href=""> 추천 |</a>
+        <a href=""> 파티원구함 |</a>
+        <a href=""> 질문</a>
+
+      </div>
+      <!--리스트-->
+
+      <table class="board_col">
+
+
+        <colgroup>
+          <col style="width:10%">
+          <col style="width:50%">
+          <col style="width:30%">
+          <col style="width:10%">
+        </colgroup>
+        <thead>
+        <tr>
+          <th scope="col">번호</th>
+          <th scope="col">제목</th>
+
+          <th scope="col">작성일</th>
+          <th scope="col">조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="freenotice, stat : ${paging}" th:if="${stat.index < 15}">
+
+          <td class="tal">
+            <a th:href="@{|/freenotice/detail/${freenotice.id}|}" th:text="${freenotice.subject}"></a>
+          </td>
+          <td th:text="${freenotice.createDate}"></td>
+          <td th:text="${freenotice.viewCount}"></td>
+        </tr>
+        </tbody>
+      </table>
+
+
+
+
+      <!--리스트 끝-->
+    </div>
+  </div>
+</div>
+</div>
+<div class="foot_area">
+<footer th:replace="layout/footer.html"></footer>
+</div>
+
+</body>
+
