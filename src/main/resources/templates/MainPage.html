@@ -48,10 +48,10 @@
         <br>
 
         <tbody>
-        <tr th:each="notice, stat : ${noticeList}" th:if="${stat.index < 10}">
+        <tr th:each="freenotice, stat : ${freePaging}" th:if="${stat.index < 5}">
 
             <td class="tal">
-                <li> <a th:href="@{|/notice/detail/${notice.id}|}" th:text="${notice.subject}">리스트입니당</a></li>
+                <li> <a class="tal" th:href="@{|/freenotice/detail/${freenotice.id}|}" th:text="${freenotice.subject}">리스트입니당</a></li>
             </td>
 
 
@@ -70,7 +70,7 @@
         <tr th:each="notice, stat : ${noticeList}" th:if="${stat.index < 10}">
 
             <td class="tal">
-                <li><a th:href="@{|/notice/detail/${notice.id}|}" th:text="${notice.subject}">리스트입니당</a>
+                <li><a class="tal2" th:href="@{|/notice/detail/${notice.id}|}" th:text="${notice.subject}">리스트입니당</a>
                 </li>
             </td>
 

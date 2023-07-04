@@ -16,7 +16,7 @@
 <body>
 <div th:replace="layout/navBar.html"></div>
 <!--아래부터 게시글 상세-->
-<div>
+<div class="footer_con" >
   <img  class ="img_b"src="https://i.postimg.cc/RCRQBxn4/3.jpg"/>
   <div class="title_control">
     <h1 class="my-3 border-bottom pb-2"><p>자유게시판 </p></h1>
@@ -30,13 +30,13 @@
           <span th:text="${article.id}" class="articleNum" id="articleId">123</span>
         </div>
         <div class="modifyRemove">
-          <a th:href="@{|/article/modify/${article.id}|}"
+          <a th:href="@{|/freenotice/modify/${article.id}|}"
              sec:authorize="isAuthenticated()"
              th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
           >
             <button class="modify">수정</button>
           </a>
-          <a href="javascript:void(0);" th:data-uri="@{|/article/delete/${article.id}|}"
+          <a href="javascript:void(0);" th:data-uri="@{|/freenotice/delete/${article.id}|}"
              sec:authorize="isAuthenticated()" class="delete btn btn-sm btn-outline-secondary"
              th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
           >
@@ -46,7 +46,7 @@
 
         <div class="article_title">
           <span class="category_ment">[</span>
-          <span class="category_ment">카테고리</span>
+          <span class="category_ment" th:text="${article.category}">카테고리</span>
           <span class="category_ment">]</span>
           <p th:text="${article.subject}" class="article_title">제목</p>
         </div>
@@ -57,17 +57,18 @@
 
             <div class="profile_area">
               <div class="profile_info">
+                <span class="create">닉네임:</span>
                             <span th:if="${article.author != null}" th:text="${article.author.nickname}"
                                   class="nick">닉네임</span>
               </div>
             </div>
             <div class="article_info">
               <div class="createtime">
-                <span class="create">작성시간</span>
+                <span class="create">작성일:</span>
                 <span th:text="${article.createDate}" class="create_time"></span>
               </div>
               <div class="viewcount">
-                <span class="count">조회수 </span>
+                <span class="count">조회수: </span>
                 <span th:text="${article.viewCount}" class="count"></span>
               </div>
             </div>
@@ -94,13 +95,7 @@
               <div class="iconLine">
                 <div class="like">
                   <a href="#" role="button" class="like_heart">
-                    <i class="fa-regular fa-thumbs-up" style="color: #000000;"></i>
-                  </a>
 
-                  <em class="u_ico _icon"></em>
-                  <span class="u_txt _label">&nbsp;추천</span>
-                  <strong th:text="${article.likeCount}" id="checkedLikeCount"
-                          class="u_cnt _count"></strong>
                   <i class="fa-regular fa-message" style="color: #73703f;"></i>
 
                   <a href="#" role="button" aria-pressed="true" class="button_comment"><span
@@ -128,7 +123,7 @@
                     </div>
                     <!--  댓글내용 끝  -->
                     <div class="formmodifybox">
-                      <form th:action="@{|/answer/modify/${answer.id}|}" th:object="${answerForm}"
+                      <form th:action="@{|/freenoticeanswer/modify/${answer.id}|}" th:object="${answerForm}"
                             method="post" class="formboxform">
 
                                         <textarea name="content" id="content" rows="10"
@@ -155,7 +150,7 @@
                            th:text="수정" onclick="showFormModifyBox(event, this)">
                           <button type="button" class="answermodify_btn">수정</button>
                         </a>
-                        <a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}"
+                        <a href="javascript:void(0);" th:data-uri="@{|/freenoticeanswer/delete/${answer.id}|}"
                            class="delete btn btn-sm btn-outline-secondary"
                            sec:authorize="isAuthenticated()"
                            th:if="${answer.author != null and #authentication.getPrincipal().getUsername() == answer.author.username}"
@@ -170,7 +165,7 @@
                   </div>
 
                   <div class="formbox">
-                    <form th:action="@{|/answer/create/${article.id}|}" th:object="${answerForm}"
+                    <form th:action="@{|/freenoticeanswer/create/${article.id}|}" th:object="${freeNoticeAnswerForm}"
                           method="post" class="formboxform">
 
                                         <textarea name="content" id="content" rows="10"
@@ -186,6 +181,52 @@
       </div>
     </div>
   </div>
+
 </div>
+<div>
 <footer th:replace="layout/footer.html"></footer>
+</div>
+<script type='text/javascript'>
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+
+
+
+
+
+
+</script>
+
+<script>
+  function showFormModifyBox(event, button) {
+    event.preventDefault(); // 페이지 새로고침 방지
+
+    var formModifyBox = $(button).closest('.answerbox').find('.formmodifybox');
+    $(formModifyBox).css('display', 'block');
+
+    var answerCreateBox = $(button).closest('.answerbox').find('.answerCreateBox');
+    $(answerCreateBox).css('display', 'none');
+  }
+  function hideFormModifyBox(event, button) {
+  event.preventDefault(); // 이벤트의 기본 동작 방지
+
+  var formModifyBox = $(button).closest('.answerbox').find('.formmodifybox');
+  $(formModifyBox).css('display', 'none');
+
+  var answerCreateBox = $(button).closest('.answerbox').find('.answerCreateBox');
+  $(answerCreateBox).css('display', 'block');
+}
+
+
+
+
+
+
+</script>
 </body>

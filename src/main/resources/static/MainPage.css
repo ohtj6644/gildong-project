@@ -99,6 +99,7 @@ a{
   height: 360px;
 border:2px solid gray;
   border-radius:10px;
+  box-shadow: 10px 10px 5px gray;
 }
 .notice_bar{
   position:absolute;
@@ -108,12 +109,13 @@ border:2px solid gray;
   height: 360px;
 border:2px solid gray;
   border-radius:10px;
+  box-shadow: 10px 10px 5px gray;
 }
 .list_subject{
-  border:3px solid red;
+
 }
 .list_head{
-  border-bottom:3px solid red;
+padding:20px;
 }
 
 
@@ -127,6 +129,7 @@ border:2px solid gray;
   top:5%;
   border:2px solid gray;
     border-radius:10px;
+    box-shadow: 10px 10px 5px gray;
 }
 .icon_text{
   font-family: 'Grandiflora One', serif;
@@ -162,3 +165,16 @@ a{
   background: linear-gradient(180deg,rgba(255,255,255,0) 60%, red 40%);
     cursor: pointer;
 }
+
+.tal{
+padding:20px;
+
+
+}
+.tal2{
+font-family: 'Grandiflora One', serif;
+margin-bottom:20px;
+}
+
+
+

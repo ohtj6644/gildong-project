@@ -1,6 +1,7 @@
 package com.ll.gildong.freeNotice;
 
 
+import com.ll.gildong.FreeNoticeAnswer.FreeNoticeAnswer;
 import com.ll.gildong.User.SiteUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -24,9 +26,9 @@ public class FreeNotice {
     @Size(max = 50)
     private String subject;
 
-    private LocalDateTime createDate;
+    private LocalDate createDate;
 
-    private LocalDateTime modifyDate;
+    private LocalDate modifyDate;
 
 
     @Column(columnDefinition = "text")
@@ -37,8 +39,8 @@ public class FreeNotice {
     private String category;
 
 
-//    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
-//    private List<Answer> answerList;
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
+    private List<FreeNoticeAnswer> answerList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
@@ -49,8 +51,6 @@ public class FreeNotice {
 
     private int likeCount;
 
-//    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
-//    private List<Answer> answerList;
 
 
     @ElementCollection

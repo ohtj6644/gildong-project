@@ -35,6 +35,8 @@ public class SiteUser {
     @Column(unique = true)
     private String nickname;
 
+    private LocalDate createDate;
 
+    private int level=1;
 
 }

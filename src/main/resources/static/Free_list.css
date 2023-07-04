@@ -99,11 +99,16 @@ div{
 }
 .rel_con{
     height:1000px;
+    margin-top:50px;
 }
+.category_list{
+ margin-bottom:20px;
+ }
 .category_list>a{
   text-decoration:none;
   color:black;
   font-family: 'Grandiflora One', serif;
+
 }
 
 .category_list>a:hover{
@@ -116,3 +121,27 @@ div{
 }
 
 
+
+
+
+.page-list{
+list-style:none;
+text-align:row;
+font-size:25px;
+}
+
+.page-list>li{
+display:imline-block;
+}
+
+.page-item{
+display:inline-block;
+list-style:none;
+}
+
+.disabled{
+display:inline-block;
+}
+.page-link > a {
+    color: black;
+}

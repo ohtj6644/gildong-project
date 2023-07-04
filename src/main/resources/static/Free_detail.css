@@ -96,6 +96,7 @@ div{
   color:#000;
   font-weight:bold;
   margin-top:0;
+  font-family: 'Noto Sans KR', sans-serif;
 
 }
 
@@ -410,21 +411,29 @@ input{
 
 .Review_form{
   width:1000px;
-  position:absolute;
+  position:relative;
   left:300px;
 
 }
 .title_control{
   display:inline-block;
   position:absolute;
-  left:420px;
+  left:460px;
 
 }
 
 .img_b{
   position:absolute;
-  top:40%;
+  top:400px;
 }
 .Article_content_Box{
   background: white;
+ height:100%;
+
+}
+
+
+.footer_con{
+margin-top:50px;
+display:inline-block;
 }

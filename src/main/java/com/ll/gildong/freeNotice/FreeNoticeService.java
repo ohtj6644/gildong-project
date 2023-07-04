@@ -1,26 +1,29 @@
 package com.ll.gildong.freeNotice;
 
 
-import com.ll.gildong.DataNotFoundException;
-import com.ll.gildong.FreeNoticeAnswer.FreeNoticeAnswer;
-import com.ll.gildong.User.SiteUser;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import jakarta.persistence.criteria.*;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import com.ll.gildong.DataNotFoundException;
+import com.ll.gildong.FreeNoticeAnswer.FreeNoticeAnswer;
+import com.ll.gildong.User.SiteUser;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -50,40 +53,14 @@ public class FreeNoticeService {
 
     public Page<FreeNotice> getList(int page, String kw) {
         List<Sort.Order> sorts= new ArrayList<>();
-        sorts.add(Sort.Order.desc("createDate"));
+        sorts.add(Sort.Order.desc("id"));
         Pageable pageable = PageRequest.of(page,15,Sort.by(sorts));
         Specification<FreeNotice> spec = search(kw);
         return this.freeNoticeRepository.findAll(pageable);
     }
 
 
-    public void create(FreeNoticeForm articleForm, SiteUser user, MultipartFile[] files) throws IOException {
-        String projectPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "files";
 
-        List<String> filenames = new ArrayList<>();
-        List<String> filepaths = new ArrayList<>();
-
-        for (MultipartFile file : files) {
-            UUID uuid = UUID.randomUUID();
-            String fileName = uuid + "_" + file.getOriginalFilename();
-            String filePath = "/files/" + fileName;
-
-            File saveFile = new File(projectPath, fileName);
-            file.transferTo(saveFile);
-
-            filenames.add(fileName);
-            filepaths.add(filePath);
-        }
-
-        FreeNotice article = new FreeNotice();
-        article.setSubject(articleForm.getSubject());
-        article.setContent(articleForm.getContent());
-        article.setCreateDate(LocalDateTime.now());
-        article.setAuthor(user);
-        article.setFilenames(filenames);
-        article.setFilepaths(filepaths);
-        this.freeNoticeRepository.save(article);
-    }
 
 
 
@@ -102,4 +79,65 @@ public class FreeNoticeService {
         this.freeNoticeRepository.save(article);
     }
 
+    public void create(FreeNoticeForm freeNoticeForm, SiteUser user, MultipartFile[] files) throws IOException {
+        String projectPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "files";
+
+        List<String> filenames = new ArrayList<>();
+        List<String> filepaths = new ArrayList<>();
+
+        for (MultipartFile file : files) {
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + file.getOriginalFilename();
+            String filePath = "/files/" + fileName;
+
+            File saveFile = new File(projectPath, fileName);
+            file.transferTo(saveFile);
+
+            filenames.add(fileName);
+            filepaths.add(filePath);
+        }
+
+        FreeNotice article = new FreeNotice();
+        article.setSubject(freeNoticeForm.getSubject());
+        article.setContent(freeNoticeForm.getContent());
+        article.setCreateDate(LocalDate.now());
+        article.setAuthor(user);
+        article.setCategory(freeNoticeForm.getCategory());
+        article.setFilenames(filenames);
+        article.setFilepaths(filepaths);
+        this.freeNoticeRepository.save(article);
+    }
+
+
+    public void vote(FreeNotice article, SiteUser siteUser) {
+        article.getVoter().add(siteUser);
+        this.freeNoticeRepository.save(article);
+    }
+
+
+    public void delVote(FreeNotice article, SiteUser siteUser) {
+        article.getVoter().remove(siteUser);
+        this.freeNoticeRepository.save(article);
+    }
+
+    public void modify(FreeNotice article, String subject, String content, String category) {
+        article.setSubject(subject);
+        article.setContent(content);
+        article.setCategory(category);
+        article.setModifyDate(LocalDate.now());
+        this.freeNoticeRepository.save(article);
+
+    }
+
+    public void delete(FreeNotice article) {
+        this.freeNoticeRepository.delete(article);
+    }
+
+    public Page<FreeNotice> getList5(int page, String kw) {
+        List<Sort.Order> sorts= new ArrayList<>();
+        sorts.add(Sort.Order.desc("id"));
+        Pageable pageable = PageRequest.of(page,5,Sort.by(sorts));
+        Specification<FreeNotice> spec = search(kw);
+        return this.freeNoticeRepository.findAll(pageable);
+    }
 }

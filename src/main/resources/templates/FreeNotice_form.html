@@ -1,6 +1,6 @@
-<!--네비바(탑바)-->
+
 <!DOCTYPE html>
-<head>
+<head xmlns:sec="http://www.w3.org/1999/xhtml">
   <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,10 +17,11 @@
 <div th:replace="layout/navBar.html"></div>
 <!--아래부터 폼 -->
 <div class="box">
-  <img  class ="img_b"src="https://i.postimg.cc/RCRQBxn4/3.jpg"/>
+  <img  class ="img_b" src="https://i.postimg.cc/RCRQBxn4/3.jpg"/>
   <div  class="container" >
 
     <form th:object="${freeNoticeForm}" method="post" class="form" enctype="multipart/form-data">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
       <h1 class="my-3 border-bottom pb-2"><p>자유게시판 작성</p></h1>
 
       <div th:replace="~{form_errors :: formErrorsFragment}"></div>
@@ -32,14 +33,14 @@
 
       <div class="mb-3">
         <div class="season"><p>카테고리:</p></div>
-        <select name=”season” id="season" th:field="*{category}">
-          <option id="seasonmenu1" name="season" value=자유>자유</option>
-          <option id="seasonmenu2" name="season" value=추천>추천</option>
-          <option id="seasonmenu3" name="season" value=파티원구함>파티원구함</option>
-          <option id="seasonmenu3" name="season" value=질문>질문</option>
+        <select name="category" id="category" th:field="*{category}">
+          <option id="seasonmenu1" name='category' value=자유>자유</option>
+          <option id="seasonmenu2" name='category' value=추천>추천</option>
+          <option id="seasonmenu3" name='category' value=파티원구함>파티원구함</option>
+          <option id="seasonmenu4" name='category' value=질문>질문</option>
 
         </select>
-
+      </div>
 
         <div class="product-img-box">
           <label for="avatar1" class="picture">상품사진:</label>
@@ -60,6 +61,7 @@
     </form>
   </div>
 </div>
+
 <!--footer-->
 <footer th:replace="layout/footer.html"></footer>
 

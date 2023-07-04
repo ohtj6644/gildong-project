@@ -1,7 +1,14 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@font-face {
+    font-family: 'dimibang_new';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.1/dimibang_new.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .notosanskr * {
-font-family: 'Grandiflora One', serif;
+font-family: 'dimibang_new';
 
 }
 div,
@@ -9,10 +16,16 @@ nav {
   box-sizing: border-box;
 }
 span,p,a,h1,h2,h3{
-    font-family: 'Grandiflora One', serif;
+    font-family: 'dimibang_new';
 
     color: #73703f;
 }
+
+.tal{
+font-family: 'Noto Sans KR', sans-serif;
+}
+
+
 button {
   border: 0;
   background-color: transparent;
@@ -114,3 +127,7 @@ background: linear-gradient(180deg,rgba(255,255,255,0) 60%, red 40%);
     margin-left: 5px;
 }
 
+.top__bar{
+border-bottom:2px solid black;
+padding-bottom:20px;
+}
