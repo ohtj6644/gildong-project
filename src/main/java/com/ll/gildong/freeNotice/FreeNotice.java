@@ -46,10 +46,7 @@ public class FreeNotice {
     @JoinColumn(name = "author_id")
     private SiteUser author;
 
-    @ManyToMany
-    private Set<SiteUser> voter;
 
-    private int likeCount;
 
 
 

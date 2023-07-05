@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/MainPage.css"/>
     <link rel="stylesheet" href="/layout/navBar.css"/>
     <link rel="stylesheet" href="/layout/footer.css"/>
+    <title>홍길동</title>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
 </style>
@@ -50,8 +51,8 @@
         <tbody>
         <tr th:each="freenotice, stat : ${freePaging}" th:if="${stat.index < 5}">
 
-            <td class="tal">
-                <li> <a class="tal" th:href="@{|/freenotice/detail/${freenotice.id}|}" th:text="${freenotice.subject}">리스트입니당</a></li>
+            <td >
+                <li class="tal2"> <a class="tal" th:href="@{|/freenotice/detail/${freenotice.id}|}" th:text="${freenotice.subject}">리스트입니당</a></li>
             </td>
 
 
@@ -67,10 +68,10 @@
         <br>
 
         <tbody>
-        <tr th:each="notice, stat : ${noticeList}" th:if="${stat.index < 10}">
+        <tr th:each="notice, stat : ${noticePaging}" th:if="${stat.index < 10}">
 
             <td class="tal">
-                <li><a class="tal2" th:href="@{|/notice/detail/${notice.id}|}" th:text="${notice.subject}">리스트입니당</a>
+                <li class="tal2" ><a class="tal" th:href="@{|/notice/detail/${notice.id}|}" th:text="${notice.subject}">리스트입니당</a>
                 </li>
             </td>
 
@@ -113,7 +114,7 @@
                 </a>
             </div>
             <div class="icon_box">
-                <a href="#">
+                <a th:href="@{/notice/list}">
                     <img src="https://i.postimg.cc/ZK8s6hpv/Kakao-Talk-Photo-2023-07-03-12-42-30.png"/>
                     <span class="icon_text">공지사항</span>
                 </a>

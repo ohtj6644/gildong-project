@@ -162,7 +162,7 @@ a{
 
 
 .icon_box>a:hover>span{
-  background: linear-gradient(180deg,rgba(255,255,255,0) 60%, red 40%);
+  background: linear-gradient(180deg,rgba(255,255,255,0) 60%, gray 40%);
     cursor: pointer;
 }
 
@@ -171,10 +171,19 @@ padding:20px;
 
 
 }
+
+
 .tal2{
-font-family: 'Grandiflora One', serif;
+display:block;
+width:300px;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+border-bottom:1px solid gray;
 margin-bottom:20px;
 }
 
-
-
+.tal2:hover{
+background: linear-gradient(180deg,rgba(255,255,255,0) 60%, gray 40%);
+    cursor: pointer;
+}

@@ -3,7 +3,7 @@
   <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>툴툴</title>
+  <title>홍길동</title>
   <link rel="stylesheet" href="/Free_list.css"/>
   <link rel="stylesheet" href="/layout/navBar.css"/>
   <link rel="stylesheet" href="/layout/footer.css"/>
@@ -36,10 +36,11 @@
         </button>
       </div>
       <div class="category_list">
-        <a href=""> 자유 |</a>
-        <a href=""> 추천 |</a>
-        <a href=""> 파티원구함 |</a>
-        <a href=""> 질문</a>
+        <a th:href="@{/freenotice/sort/free}"> 자유 |</a>
+        <a th:href="@{/freenotice/sort/vote}"> 추천 |</a>
+        <a th:href="@{/freenotice/sort/party}"> 파티원구함 |</a>
+        <a th:href="@{/freenotice/sort/question}"> 질문 |</a>
+        <a th:href="@{/freenotice/list}"> 전체 </a>
 
       </div>
       <!--리스트-->
@@ -63,10 +64,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="freenotice, stat : ${paging}" th:if="${stat.index < 15}">
+        <tr th:each="freenotice, stat : ${paging}" th:if="${stat.index < 20}">
 
           <td th:text="${freenotice.id}"></td>
-          <td class="tal">
+          <td class="tal2">
             <a class="tal" th:href="@{|/freenotice/detail/${freenotice.id}|}" th:text="${freenotice.subject}"></a>
 
             <span class="text-danger small ms-2"

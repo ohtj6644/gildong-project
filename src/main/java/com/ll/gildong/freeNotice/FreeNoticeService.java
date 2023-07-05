@@ -54,9 +54,34 @@ public class FreeNoticeService {
     public Page<FreeNotice> getList(int page, String kw) {
         List<Sort.Order> sorts= new ArrayList<>();
         sorts.add(Sort.Order.desc("id"));
-        Pageable pageable = PageRequest.of(page,15,Sort.by(sorts));
+        Pageable pageable = PageRequest.of(page,20,Sort.by(sorts));
         Specification<FreeNotice> spec = search(kw);
-        return this.freeNoticeRepository.findAll(pageable);
+        return this.freeNoticeRepository.findAll(spec,pageable);
+    }
+
+    public Page<FreeNotice> getList(int page, String kw,String sortkey) {
+        List<Sort.Order> sorts= new ArrayList<>();
+        sorts.add(Sort.Order.desc("id"));
+        Pageable pageable = PageRequest.of(page,20,Sort.by(sorts));
+        Specification<FreeNotice> spec = searchCategory(sortkey);
+        return this.freeNoticeRepository.findAll(spec,pageable);
+    }
+    public Specification<FreeNotice> searchCategory(String sortkey) {
+        return (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            // Season 컬럼을 기준으로 검색 조건 생성
+            if (sortkey != null) {
+                Path<String> seasonPath = root.get("category");
+                Predicate seasonPredicate = criteriaBuilder.equal(seasonPath, sortkey);
+                predicates.add(seasonPredicate);
+            }
+
+            // 다른 조건들을 추가하고 싶다면 여기에 추가
+
+            // 검색 조건들을 조합하여 최종 검색 조건 생성
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
     }
 
 
@@ -109,16 +134,7 @@ public class FreeNoticeService {
     }
 
 
-    public void vote(FreeNotice article, SiteUser siteUser) {
-        article.getVoter().add(siteUser);
-        this.freeNoticeRepository.save(article);
-    }
 
-
-    public void delVote(FreeNotice article, SiteUser siteUser) {
-        article.getVoter().remove(siteUser);
-        this.freeNoticeRepository.save(article);
-    }
 
     public void modify(FreeNotice article, String subject, String content, String category) {
         article.setSubject(subject);

@@ -32,7 +32,6 @@ public class FreeNoticeAnswer {
     @ManyToOne
     private SiteUser author;
 
-    @ManyToMany
-    Set<SiteUser> voter;
+
 
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>홍길동</title>
+  <link rel="stylesheet" href="/Notice_detail.css"/>
+  <link rel="stylesheet" href="/layout/navBar.css"/>
+  <link rel="stylesheet" href="/layout/footer.css"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+</style>
+</head>
+
+<body>
+<div th:replace="layout/navBar.html"></div>
+<!--아래부터 게시글 상세-->
+<div class="footer_con" >
+  <img  class ="img_b"src="https://i.postimg.cc/dt93hn7d/123123.jpg"/>
+  <div class="title_control">
+    <h1 class="my-3 border-bottom pb-2"><p>공지사항 </p></h1>
+  </div>
+  <div class="Review_form">
+    <div class="Article_content_Box">
+
+      <div class="article_header">
+        <div class="articlenum">
+          <span>글번호</span>
+          <span th:text="${article.id}" class="articleNum" id="articleId">123</span>
+        </div>
+        <div class="modifyRemove">
+          <a th:href="@{|/notice/modify/${article.id}|}"
+             sec:authorize="isAuthenticated()"
+             th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+          >
+            <button class="modify">수정</button>
+          </a>
+          <a href="javascript:void(0);" th:data-uri="@{|/notice/delete/${article.id}|}"
+             sec:authorize="isAuthenticated()" class="delete btn btn-sm btn-outline-secondary"
+             th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+          >
+            <button class="remove">삭제</button>
+          </a>
+        </div>
+
+        <div class="article_title">
+
+          <p th:text="${article.subject}" class="article_title">제목</p>
+        </div>
+
+        <hr class="subhr">
+        <div class="userInfoform">
+
+        </div>
+      </div>
+
+      <div class="gradeOrhashtag">
+
+      </div>
+      <div class="article_container">
+        <div class="SaleInfo">
+
+        </div>
+        <div class="content_form">
+          <div class="content_view">
+            <p th:text="${article.content}" class="content_write"></p>
+
+          </div>
+          <div>
+            <a th:href="@{/notice/list}">
+              <button class="modify">목록</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <div>
+    <footer th:replace="layout/footer.html"></footer>
+  </div>
+  <script type='text/javascript'>
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+
+
+
+
+
+
+</script>
+
+
+</body>

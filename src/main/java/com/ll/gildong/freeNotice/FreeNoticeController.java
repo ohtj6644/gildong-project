@@ -107,7 +107,46 @@ public class FreeNoticeController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
         }
         this.freeNoticeService.delete(article);
-        return "redirect:/article/list";
+        return "redirect:/freenotice/list";
+    }
+
+
+    @GetMapping(value = "/freenotice/sort/{key}")
+    public String sortlist(Model model , @PathVariable("key") String sortkey ,@RequestParam(value = "page",defaultValue = "0")int page ,
+                           @RequestParam(value = "kw",defaultValue = "")String kw ){
+        String key;
+        if(sortkey.equals("free")){
+            key="자유";
+            Page<FreeNotice> paging = this.freeNoticeService.getList(page,kw,key);
+            int FreeNoticeCount = paging.getNumberOfElements();
+
+            model.addAttribute("paging",paging);
+            model.addAttribute("FreeNoticeCount",FreeNoticeCount);
+        } else if (sortkey.equals("vote")) {
+            key="추천";
+            Page<FreeNotice> paging = this.freeNoticeService.getList(page,kw,key);
+            int FreeNoticeCount = paging.getNumberOfElements();
+
+            model.addAttribute("paging",paging);
+            model.addAttribute("FreeNoticeCount",FreeNoticeCount);
+        } else if (sortkey.equals("party")) {
+            key="파티원구함";
+            Page<FreeNotice> paging = this.freeNoticeService.getList(page,kw,key);
+            int FreeNoticeCount = paging.getNumberOfElements();
+
+            model.addAttribute("paging",paging);
+            model.addAttribute("FreeNoticeCount",FreeNoticeCount);
+        } else if (sortkey.equals("question")) {
+            key="질문";
+            Page<FreeNotice> paging = this.freeNoticeService.getList(page,kw,key);
+            int FreeNoticeCount = paging.getNumberOfElements();
+
+            model.addAttribute("paging",paging);
+            model.addAttribute("FreeNoticeCount",FreeNoticeCount);
+        }
+
+
+        return "FreeNotice_list";
     }
 
 
