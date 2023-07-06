@@ -1,0 +1,155 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.container{
+  text-align:left;
+}
+.my-3 border-bottom pb-2{
+  text-align:left;
+
+}
+h1 > p {
+    color: black;
+    letter-spacing :-1px;
+  font-family: 'Grandiflora One', serif;
+}
+.form{
+  margin-left:30%;
+  width:60%;
+}
+.form-control{
+  width:90%;
+  margin-left:90px;
+}
+.form-control-1 {
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+}
+.mb-3{
+  margin-top:30px;
+  position:relative;
+}
+.form-label {
+  position:absolute;
+  font-family: 'Grandiflora One', serif;
+  font:black;
+}
+.form-label p {
+   color:black;
+}
+textarea{
+  height:700px;
+}
+.btn-primary{
+   font-size:20px;
+   width:10%;
+   height:50px;
+   margin-top:20px;
+   margin-bottom:20px;
+   background: black;
+   color:white;
+   border-radius:10px;
+   border:none;
+   position:absolute;
+   left: 1320px;
+}
+.btn-primary:hover{
+  background: #ff6c00;
+  color: #fff;
+  border:1px solid #a5a773;
+  cursor:pointer;
+}
+#form2{
+  width:50%;
+}
+.photo{
+  border:1px solid black;
+  display:inline-block;
+  height:80px;
+  width:80px;
+  text-align:center;
+  margin-top:30px;
+}
+#rating>label{
+  margin-left:10px;
+  margin-right:50px;
+}
+#rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  color: black;
+  float: right;
+}
+
+.rating input:checked ~ label,
+.rating input:checked ~ label ~ label {
+  color: black;
+}
+.season{
+  display:inline-block;
+  margin-right: 20px;
+}
+.season >p{
+   font-weight: normal;
+   color: black;
+  font-family: 'Grandiflora One', serif;
+  font:black;
+}
+.season2{
+  display:inline-block;
+  margin-left:20px;
+  margin-right: 20px;
+}
+.season2 >p{
+   font-weight: normal;
+   color: black;
+  font-family: 'Grandiflora One', serif;
+  font:black;
+}
+.product-img-box {
+    display: flex;
+    margin-top: 30px;
+}
+.picture {
+   font-family: 'Grandiflora One', serif;
+  font:black;
+   font-weight: normal;
+   margin-right: 20px;
+}
+
+.button {
+    width: 90%;
+    height: 50px;
+    position: relative;
+}
+.btn-primary{
+   font-size: 20px;
+   width: 100px;
+   height:50px;
+   background: black;
+   color:white;
+   border-radius:10px;
+   border:none;
+   position:absolute;
+   left: 100%;
+  font-family: 'Grandiflora One', serif;
+  font:black;
+}
+.btn-primary:hover{
+  background: red;
+  color: #fff;
+  cursor:pointer;
+}
+
+.box{
+  position:relative;
+}
+.img_b{
+  position:absolute;
+  top:40%;
+}

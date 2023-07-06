@@ -1,0 +1,265 @@
+p{
+  font-family: 'Grandiflora One', serif;
+}
+span{
+  font-family: 'Grandiflora One', serif;
+  font-weight:bold;
+}
+button{
+  font-family: 'Grandiflora One', serif;
+}
+input{
+  font-family: 'Grandiflora One', serif;
+}
+
+
+
+
+/* 리뷰 박스 시작 */
+div{
+  display:block;
+}
+
+.Review_form{
+  display:block;
+  margin-top:80px;
+
+}
+.grade{
+    display: inline-block;
+    line-height: 30px;
+    vertical-align: top;
+    margin-top: 20px;
+}
+
+
+
+.Article_content_Box{
+    padding: 40px 40px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display:block;
+    width:68%;
+    height:1600px;
+    margin:0 auto;
+    position:relative;
+}
+
+.ArticleContentBox .article_header {
+    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #565656;
+}
+
+.article_title {
+  margin-bottom:15px;
+  font-size:2rem;
+  display:block;
+  color:#000;
+  font-weight:bold;
+  margin-top:0;
+
+}
+
+
+
+
+
+
+
+
+
+.Review_form{
+  width:1000px;
+  position:absolute;
+  left:300px;
+  text-align:center;
+
+
+}
+.title_control{
+  position:absolute;
+  left:460px;
+
+}
+
+.img_b{
+  position:absolute;
+  top:400px;
+}
+.Article_content_Box{
+  background: white;
+}
+
+.write_box{
+  width:100px;
+  height:50px;
+  margin-left:500px;
+}
+.rel_con{
+    height:1000px;
+    margin-top:50px;
+}
+.category_list{
+ margin-bottom:20px;
+ }
+.category_list>a{
+  text-decoration:none;
+  color:black;
+  font-family: 'Grandiflora One', serif;
+
+}
+
+.category_list>a:hover{
+  border-bottom:1px solid black;
+}
+
+.board_col{
+  width:100%;
+  text-align:left;
+}
+
+
+
+
+
+.page-list{
+list-style:none;
+text-align:row;
+font-size:25px;
+}
+
+.page-list>li{
+display:imline-block;
+}
+
+.page-item{
+display:inline-block;
+list-style:none;
+}
+
+.disabled{
+display:inline-block;
+}
+.page-link > a {
+    color: black;
+}
+
+
+.tal2{
+display:block;
+width:350px;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+
+}
+
+
+
+/*수정*/
+/*review_board*/
+.review_board_page {
+  width: 610px;
+  margin: 0 auto;
+}
+.review_board_page > .review_board_page_1{
+  display: flex;
+}
+.review_board_page > .review_board_page_1 > ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(230px, 280px));
+  gap: 50px; /* 간격 설정 */
+}
+
+.review_board_page > .review_board_page_1 .review_board_main_img {
+  width: 250px;
+  height: 220px;
+  margin: 20px 0;
+}
+/*text_box*/
+.review_board_page > .review_board_page_1 .review_board_text_box {
+  display: flex;
+}
+.review_board_page > .review_board_page_1 .review_board_text_box span {
+  font-size: 16px;
+  margin-top: 10px;
+  color: #73703f;
+}
+.review_board_page > .review_board_page_1 .text_box_name {
+  margin-top: 10px;
+}
+.review_board_page > .review_board_page_1 .text_box_name > span {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+}
+.review_board_page > .review_board_page_1 .review_board_text_box_tag {
+  margin-top: 10px;
+}
+.review_board_page > .review_board_page_1 .review_board_text_box_tag > span {
+  font-weight: bold;
+  font-size: 16px;
+  color: gray;
+}
+/*paging*/
+.content {
+  /*review_content*/
+  margin-bottom: 20px;
+}
+.pagination {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.pagination a {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #f1f1f1;
+  text-decoration: none;
+  color: #333;
+  border-radius: 3px;
+}
+.pagination .active {
+  color: #fff;
+}
+.pagination-1{
+  flex-direction: column;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.page-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-item {
+  margin-right: 5px;
+}
+
+.page-link {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #333;
+}
+
+.page-link.active {
+  color: #fff;
+}
+
+
+.rel_con1{
+  display:block;
+  height:1600px;
+      margin-top:50px;
+}

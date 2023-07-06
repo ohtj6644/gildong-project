@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>홍길동</title>
+  <link rel="stylesheet" href="/PhotoBook_list.css"/>
+  <link rel="stylesheet" href="/layout/navBar.css"/>
+  <link rel="stylesheet" href="/layout/footer.css"/>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap');
+</style>
+</head>
+
+<body>
+<div th:replace="layout/navBar.html"></div>
+<!--아래부터 게시글 상세-->
+<div class="rel_con1">
+  <div class="rel_con">
+    <img  class ="img_b"src="https://i.postimg.cc/RCRQBxn4/3.jpg"/>
+    <div class="title_control">
+      <h1 class="my-3 border-bottom pb-2"><p>사진첩 </p></h1>
+    </div>
+
+
+    <div class="Review_form">
+      <div class="Article_content_Box">
+        <!--write_box-->
+        <div class="write_box">
+          <button type="button">
+            <a th:href="@{/photobook/create}">
+              <img src="https://i.postimg.cc/13HmB7VP/Vector.png"/>
+              <span>글쓰기</span>
+            </a>
+          </button>
+        </div>
+        <div class="content review_board_page">
+          <!--1차이미지-->
+          <div class="review_board_page_1">
+            <ul id="articleItem">
+              <li th:each="photobook, stat : ${paging}" th:if="${stat.index < 8}">
+                <nav class="item review_board_img">
+                  <div th:if="${not #lists.isEmpty(photobook.filepaths)}">
+                    <a th:href="@{|/photobook/detail/${photobook.id}|}">
+                      <img th:src="${photobook.filepaths[0]}" class="review_board_main_img"/>
+                    </a>
+                  </div>
+                  <div class="text_box_name text_box_name_1">
+                    <a th:href="@{|/photobook/detail/${photobook.id}|}" th:text="${photobook.subject}">제목</a>
+                  </div>
+
+
+                  <div class="review_board_text_box_tag">
+                    <span>작성자:</span>
+                    <span th:if="${photobook.author != null}" th:text="${photobook.author.nickname}"></span>
+                    <span>|</span>
+                    <span>조회수:</span>
+                    <span th:text="${photobook.viewCount}"></span>
+                  </div>
+                </nav>
+              </li>
+            </ul>
+          </div>
+          <div class="pagination-1">
+            <div class="pagination">
+              <ul class="page-list">
+                <li th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                  <a class="page-link"
+                     th:href="${paging.hasPrevious} ? @{|?page=${paging.number+1}|} : @{|?page=0|}">
+                    <span>이전</span>
+                  </a>
+                </li>
+                <li th:each="page: ${#numbers.sequence(0, paging.totalPages)}"
+                    th:if="${page >= paging.number-3 and page <= paging.number+3}"
+                    th:classappend="${page + 1 == paging.number} ? 'active'"
+                    class="page-item">
+                  <a th:text="${page + 1}" class="page-link" th:href="@{|?page=${page}|}"></a>
+                </li>
+                <li th:classappend="${!paging.hasNext} ? 'disabled'">
+                  <a class="page-link"
+                     th:href="${paging.hasNext} ? @{|?page=${paging.number+1}|} : @{|?page=${paging.totalPages}|}">
+                    <span>다음</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--리스트 끝-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot_area">
+  <footer th:replace="layout/footer.html"></footer>
+</div>
+
+</body>
