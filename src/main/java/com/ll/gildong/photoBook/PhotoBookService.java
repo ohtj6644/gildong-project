@@ -83,4 +83,29 @@ public class PhotoBookService {
     }
 
 
+    public PhotoBook getPhotoBook(Integer id) {
+        return this.photoBookRepository.getById(id);
+
+    }
+
+
+    public void viewCountUp(PhotoBook photoBook) {
+
+        photoBook.setViewCount(photoBook.getViewCount() + 1);
+        this.photoBookRepository.save(photoBook);
+    }
+
+
+
+    public void modify(PhotoBook article, String subject, String content) {
+        article.setSubject(subject);
+        article.setContent(content);
+        article.setModifyDate(LocalDate.now());
+        this.photoBookRepository.save(article);
+
+    }
+
+    public void delete(PhotoBook article) {
+        this.photoBookRepository.delete(article);
+    }
 }
