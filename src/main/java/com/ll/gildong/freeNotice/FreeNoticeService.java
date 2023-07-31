@@ -116,7 +116,6 @@ public class FreeNoticeService {
     for (MultipartFile file : files) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + file.getOriginalFilename();
-        String filePath = projectPath + fileName;
 
         // 변경된 파일 저장 경로
         String savePath = Paths.get(projectPath, fileName).toString();
@@ -124,7 +123,7 @@ public class FreeNoticeService {
         file.transferTo(Paths.get(savePath));
 
         filenames.add(fileName);
-        filepaths.add(filePath);
+        filepaths.add(getFilePath(fileName));
     }
 
     FreeNotice article = new FreeNotice();
@@ -134,8 +133,15 @@ public class FreeNoticeService {
     article.setAuthor(user);
     article.setCategory(freeNoticeForm.getCategory());
     article.setFilenames(filenames);
-    article.setFilepaths(projectPath);
+    article.setFilepaths(filepaths);
     this.freeNoticeRepository.save(article);
+}
+
+    public String getFilePath(String fileName) {
+    String projectPath = "/home/file"; // 저장 경로와 동일한 외부 경로
+
+    Path filePath = Paths.get(projectPath, fileName);
+    return filePath.toString();
 }
 
 
