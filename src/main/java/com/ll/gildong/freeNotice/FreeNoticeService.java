@@ -107,7 +107,7 @@ public class FreeNoticeService {
         this.freeNoticeRepository.save(article);
     }
 
-    public void create(FreeNoticeForm freeNoticeForm, SiteUser user, MultipartFile[] files) throws IOException {
+   public void create(FreeNoticeForm freeNoticeForm, SiteUser user, MultipartFile[] files) throws IOException {
     String projectPath = "/home/file"; // 변경된 외부 경로
 
     List<String> filenames = new ArrayList<>();
@@ -116,6 +116,7 @@ public class FreeNoticeService {
     for (MultipartFile file : files) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + file.getOriginalFilename();
+        String filePath = "/files/" + fileName;
 
         // 변경된 파일 저장 경로
         String savePath = Paths.get(projectPath, fileName).toString();
@@ -123,7 +124,7 @@ public class FreeNoticeService {
         file.transferTo(Paths.get(savePath));
 
         filenames.add(fileName);
-        filepaths.add(getFilePath(fileName));
+        filepaths.add(filePath);
     }
 
     FreeNotice article = new FreeNotice();
@@ -136,7 +137,6 @@ public class FreeNoticeService {
     article.setFilepaths(filepaths);
     this.freeNoticeRepository.save(article);
 }
-
     public String getFilePath(String fileName) {
     String projectPath = "/home/file"; // 저장 경로와 동일한 외부 경로
 
