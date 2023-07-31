@@ -1,7 +1,7 @@
 package com.ll.gildong.freeNotice;
 
 
-import java.nio.file.Path;
+
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.File;
@@ -107,36 +107,35 @@ public class FreeNoticeService {
         this.freeNoticeRepository.save(article);
     }
 
-   public void create(FreeNoticeForm freeNoticeForm, SiteUser user, MultipartFile[] files) throws IOException {
-    String projectPath = "/home/file/"; // 변경된 외부 경로
+    public void create(FreeNoticeForm freeNoticeForm, SiteUser user, MultipartFile[] files) throws IOException {
+        String projectPath = "/home/file/"; // 변경된 외부 경로
 
-    List<String> filenames = new ArrayList<>();
-    List<String> filepaths = new ArrayList<>();
+        List<String> filenames = new ArrayList<>();
+        List<String> filepaths = new ArrayList<>();
 
-    for (MultipartFile file : files) {
-        UUID uuid = UUID.randomUUID();
-        String fileName = uuid + "_" + file.getOriginalFilename();
-        String filePath = "/home/file/" + fileName;
+        for (MultipartFile file : files) {
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + file.getOriginalFilename();
 
-        // 변경된 파일 저장 경로
-        String savePath = Paths.get(projectPath, fileName).toString();
-        Files.createDirectories(Paths.get(savePath).getParent());
-        file.transferTo(Paths.get(savePath));
+            // 변경된 파일 저장 경로
+            String savePath = Paths.get(projectPath, fileName).toString();
+            Files.createDirectories(Paths.get(savePath).getParent());
+            file.transferTo(Paths.get(savePath));
 
-        filenames.add(fileName);
-        filepaths.add(filePath);
+            filenames.add(fileName);
+            filepaths.add(savePath);
+        }
+
+        FreeNotice article = new FreeNotice();
+        article.setSubject(freeNoticeForm.getSubject());
+        article.setContent(freeNoticeForm.getContent());
+        article.setCreateDate(LocalDate.now());
+        article.setAuthor(user);
+        article.setCategory(freeNoticeForm.getCategory());
+        article.setFilenames(filenames);
+        article.setFilepaths(filepaths);
+        this.freeNoticeRepository.save(article);
     }
-
-    FreeNotice article = new FreeNotice();
-    article.setSubject(freeNoticeForm.getSubject());
-    article.setContent(freeNoticeForm.getContent());
-    article.setCreateDate(LocalDate.now());
-    article.setAuthor(user);
-    article.setCategory(freeNoticeForm.getCategory());
-    article.setFilenames(filenames);
-    article.setFilepaths(filepaths);
-    this.freeNoticeRepository.save(article);
-}
     
 
 
