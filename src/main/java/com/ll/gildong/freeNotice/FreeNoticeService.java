@@ -1,6 +1,6 @@
 package com.ll.gildong.freeNotice;
 
-import java.io.File;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -108,7 +108,7 @@ public class FreeNoticeService {
     }
 
    public void create(FreeNoticeForm freeNoticeForm, SiteUser user, MultipartFile[] files) throws IOException {
-    String projectPath = "/home/file"; // 변경된 외부 경로
+    String projectPath = "/home/file/"; // 변경된 외부 경로
 
     List<String> filenames = new ArrayList<>();
     List<String> filepaths = new ArrayList<>();
@@ -116,7 +116,7 @@ public class FreeNoticeService {
     for (MultipartFile file : files) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + file.getOriginalFilename();
-        String filePath = "/files/" + fileName;
+        String filePath = "/home/file/" + fileName;
 
         // 변경된 파일 저장 경로
         String savePath = Paths.get(projectPath, fileName).toString();
@@ -137,12 +137,7 @@ public class FreeNoticeService {
     article.setFilepaths(filepaths);
     this.freeNoticeRepository.save(article);
 }
-    public String getFilePath(String fileName) {
-    String projectPath = "/home/file"; // 저장 경로와 동일한 외부 경로
-
-    Path filePath = Paths.get(projectPath, fileName);
-    return filePath.toString();
-}
+    
 
 
 
