@@ -1,33 +1,23 @@
-<html >
-<div  class="container my-3">
-  <div class="my-3 border-bottom">
-    <div>
-      <h4>회원가입</h4>
-    </div>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/signup.css"/>
+</head>
+<body>
+<div class="wrapper">
+  <div id="box">
+    <img src="https://image.freepik.com/free-icon/refresh_318-33117.jpg" alt="lock" />
+    <h3>sign up</h3>
+    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+      <input type="text" th:field="*{username}" class="form-control" placeholder="USERNAME" />
+      <input type="password" th:field="*{password1}" class="form-control" placeholder="PASSWORD" />
+      <input type="password" th:field="*{password2}" class="form-control" placeholder="RE-PASSWORD">
+      <input type="email" th:field="*{email}" class="form-control" placeholder="E-mail">
+      <input type="text" th:field="*{nickname}" name="nickname" id="nickname" placeholder="NICKNAME">
+      <input onclick="this.style.backgroundColor = '#69c061';" type="submit" value="go on... click me!"/>
+    </form>
+
   </div>
-  <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
-    <div th:replace="~{form_errors :: formErrorsFragment}"></div>
-    <div class="mb-3">
-      <label  class="form-label">사용자ID</label>
-      <input type="text" th:field="*{username}" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label  class="form-label">비밀번호</label>
-      <input type="password" th:field="*{password1}" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label  class="form-label">비밀번호 확인</label>
-      <input type="password" th:field="*{password2}" class="form-control">
-    </div>
-    <div class="mb-3">
-      <label  class="form-label">이메일</label>
-      <input type="email" th:field="*{email}" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="nickname">닉네임<small></small></label>
-      <input type="text" th:field="*{nickname}" name="nickname" id="nickname">
-    </div>
-    <button type="submit" class="btn btn-primary">회원가입</button>
-  </form>
 </div>
+</body>
 </html>

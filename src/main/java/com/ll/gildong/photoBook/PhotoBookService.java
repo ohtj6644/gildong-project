@@ -1,6 +1,7 @@
 package com.ll.gildong.photoBook;
 
-
+import java.nio.file.Paths;
+import java.nio.file.Files;
 import com.ll.gildong.FreeNoticeAnswer.FreeNoticeAnswer;
 import com.ll.gildong.User.SiteUser;
 import com.ll.gildong.freeNotice.FreeNotice;
@@ -55,7 +56,7 @@ public class PhotoBookService {
     }
 
     public void create(PhotoBookForm photoBookForm, SiteUser user, MultipartFile[] files) throws IOException {
-        String projectPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "files";
+        String projectPath = "/home/file/photoBook/"; // 변경된 외부 경로
 
         List<String> filenames = new ArrayList<>();
         List<String> filepaths = new ArrayList<>();
@@ -63,13 +64,14 @@ public class PhotoBookService {
         for (MultipartFile file : files) {
             UUID uuid = UUID.randomUUID();
             String fileName = uuid + "_" + file.getOriginalFilename();
-            String filePath = "/files/" + fileName;
 
-            File saveFile = new File(projectPath, fileName);
-            file.transferTo(saveFile);
+            // 변경된 파일 저장 경로
+            String savePath = Paths.get(projectPath, fileName).toString();
+            Files.createDirectories(Paths.get(savePath).getParent());
+            file.transferTo(Paths.get(savePath));
 
             filenames.add(fileName);
-            filepaths.add(filePath);
+            filepaths.add(savePath);
         }
 
         PhotoBook article = new PhotoBook();
