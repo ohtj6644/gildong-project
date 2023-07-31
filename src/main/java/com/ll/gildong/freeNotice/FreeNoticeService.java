@@ -106,7 +106,7 @@ public class FreeNoticeService {
     }
 
     public void create(FreeNoticeForm freeNoticeForm, SiteUser user, MultipartFile[] files) throws IOException {
-    String projectPath = "/home/file"; // 변경된 외부 경로
+    String projectPath = "/home/file/"; // 변경된 외부 경로
 
     List<String> filenames = new ArrayList<>();
     List<String> filepaths = new ArrayList<>();
