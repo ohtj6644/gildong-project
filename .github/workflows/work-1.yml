@@ -42,10 +42,10 @@ jobs:
       - uses: mathieudutour/github-tag-action@v6.1
         id: tag_version
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GHCR_TOKEN }}
       - uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
@@ -68,7 +68,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}
       - name: set lower case owner name
         run: |
           echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
@@ -94,7 +94,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}
       - name: Docker run
         run: |
           docker stop sbb-1 && docker rm sbb-1 && docker rmi ghcr.io/${{ github.actor }}/sbb-1:latest
